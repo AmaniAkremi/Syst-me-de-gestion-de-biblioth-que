@@ -1,16 +1,14 @@
 
-from tkinter import *
 
-from PIL import ImageTk
-import pymysql
-from PIL import Image as im
-from tkinter import messagebox
 from AddBook import *
 from DeleteBook import *
 from ViewBooks import *
 from IssueBook import *
 from ReturnBook import *
 import mysql.connector
+
+#conexion base de donnée
+
 mypass = "Mans98634630@our"
 mydatabase="bibliotheque"
 conn = mysql.connector.connect(host = "localhost",
