@@ -7,7 +7,7 @@ import pymysql
 mypass = "Mans98634630@our"
 mydatabase = "bibliotheque"
 
-con = pymysql.connect (host="localhost",user="root",password=mypass,database=mydatabase)
+con = pymysql.connect (host="localhost", user="root", password=mypass, database=mydatabase)
 cur = con.cursor()
 
 # les noms des tableaux :
@@ -20,22 +20,28 @@ cur = con.cursor()
 
 def delete():
 
-    bookInfo1 = Entry()
+
     bid = bookInfo1.get()
-    deleteSql = "delete from " + bookTable + " where bid = " + bid
-    deleteIssue = "delete from " + issueTable + " where bid = " + bid
+    deleteSql = "delete from " + bookTable + " where book_id = " + bid
+    deleteIssue = "delete from " + issueTable + " where book_id =  " + bid
+    print(bid)
 
     try:
 
+
         cur.execute(deleteSql)
+        if cur.rowcount==0 :
+            raise Exception("not exisit")
         con.commit()
+
         cur.execute(deleteIssue)
         con.commit()
 
-        messagebox.showinfo('Success', "Book Record Deleted Successfully")
 
-    except:
-        messagebox.showinfo("Merci de vérifier l'Id du livre ")
+        messagebox.showinfo('Success', "Livre supprimer avec succé")
+
+    except Exception as e:
+        messagebox.showinfo("verefier votre id ")
 
     print(bid)
 
@@ -65,17 +71,17 @@ def DeleteBook():
     labelFrame.place(relx=0.1, rely=0.3, relwidth=0.8, relheight=0.5)
 
     # Book ID to Delete
-    lb2 = Label(labelFrame, text="Book ID : ", bg='#8B0000', fg='white')
+    lb2 = Label(labelFrame, text=" ID du livre : ", bg='#8B0000', fg='white')
     lb2.place(relx=0.05, rely=0.5)
 
     bookInfo1 = Entry(labelFrame)
     bookInfo1.place(relx=0.3, rely=0.5, relwidth=0.62)
 
     # Submit Button
-    SubmitBtn = Button(root, text="SUBMIT", bg='#d1ccc0', fg='black', command=delete)
+    SubmitBtn = Button(root, text="Valider", bg='#d1ccc0', fg='black', command=delete)
     SubmitBtn.place(relx=0.28, rely=0.9, relwidth=0.18, relheight=0.08)
 
-    quitBtn = Button(root, text="Quit", bg='#f7f1e3', fg='black', command=root.destroy)
+    quitBtn = Button(root, text="Quiter", bg='#f7f1e3', fg='black', command=root.destroy)
     quitBtn.place(relx=0.53, rely=0.9, relwidth=0.18, relheight=0.08)
 
     root.mainloop()
