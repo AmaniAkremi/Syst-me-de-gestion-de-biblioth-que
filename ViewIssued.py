@@ -26,7 +26,7 @@ def ViewIssued():
     headingFrame1 = Frame(root, bg="#EB53B4", bd=5)
     headingFrame1.place(relx=0.25, rely=0.1, relwidth=0.5, relheight=0.13)
 
-    headingLabel = Label(headingFrame1, text="Liste des livres", bg='black', fg='white', font=('Courier', 15))
+    headingLabel = Label(headingFrame1, text="Livres Prétés", bg='black', fg='white', font=('Courier', 15))
 
     headingLabel.place(relx=0, rely=0, relwidth=1, relheight=1)
 
